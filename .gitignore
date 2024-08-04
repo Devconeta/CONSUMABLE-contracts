@@ -9,6 +9,9 @@ node_modules
 **/cache
 **/artifacts
 
+# DS STORE
+.DS_Store
+
 # TypeChain files
 **/typechain
 **/typechain-types
