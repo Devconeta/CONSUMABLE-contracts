@@ -20,11 +20,11 @@ contract Vault is Ownable, Consumable {
         voucherValue = _voucherValue;
     }
 
-    function withdraw(address _token, uint256 _amount) external onlyOwner {
+    function ownerWithdraw(address _token, uint256 _amount) external onlyOwner {
         IERC20(_token).transfer(msg.sender, _amount);
     }
 
-    function consumeVoucher(
+    function consumeSecret(
         bytes32[] calldata _merkleProof,
         address receiver
     ) external onlyConsumer(_merkleProof) {

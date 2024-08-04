@@ -36,6 +36,12 @@ const baseConfig: HardhatUserConfig = {
     hardhat: {
       saveDeployments: true,
     },
+    scrollSepolia: {
+      url: "https://sepolia-rpc.scroll.io",
+      chainId: 534351,
+      accounts: ["9eecefe38415eae16772dfae13e8b751fafd1c2993c6af84f38e9f5e1be18b88"], // Use your private key or set it in an environment variable
+      saveDeployments: true,
+    },
   },
   mocha: {
     timeout: 40000,

@@ -1,5 +1,6 @@
 import { expect } from "chai";
 import { ethers, getNamedAccounts, deployments } from "hardhat";
+// import * from 'consumable-sdk';
 
 /* Objetive: Validate the consumable vault contract correctness */
 describe("Consumable Vault", function () {
@@ -58,7 +59,7 @@ describe("Consumable Vault", function () {
 
     /* 5. Consume voucher */
     console.log("consuming voucher...");
-    const tx = await vaultContractAsSecretCaller.consumeVoucher(data.merkleProof, receiver);
+    const tx = await vaultContractAsSecretCaller.consumeSecret(data.merkleProof, receiver);
     await tx.wait();
 
     /* 5. Validate */
@@ -66,6 +67,6 @@ describe("Consumable Vault", function () {
 
     /* 6. Consume voucher again and expect to fail */
     console.log("consuming voucher again...");
-    await expect(vaultContractAsSecretCaller.consumeVoucher(data.merkleProof, receiver)).to.be.revertedWith("Consumer has exceeded total uses");
+    await expect(vaultContractAsSecretCaller.consumeSecret(data.merkleProof, receiver)).to.be.revertedWith("Consumer has exceeded total uses");
   });
 });
