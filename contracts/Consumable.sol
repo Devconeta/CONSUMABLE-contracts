@@ -4,8 +4,8 @@ pragma solidity 0.8.26;
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 
 abstract contract Consumable {
-    bytes32 merkleRoot;
-    uint256 totalUsesPerConsumer;
+    bytes32 public merkleRoot;
+    uint256 public totalUsesPerConsumer;
     mapping(address => uint256) public userConsumptions;
 
     constructor(bytes32 _merkleRoot, uint256 _totalUsesPerConsumer) {
@@ -21,7 +21,7 @@ abstract contract Consumable {
     function _checkConsumer(bytes32[] calldata _merkleProof) internal virtual {
         require(isValidConsumer(_merkleProof), "Not a valid consumer");
         require(consumerHasNotExceededTotalUses(), "Consumer has exceeded total uses");
-        _incrementConsumerUses();
+        _incrementConsumerComsumptions();
     }
 
     function isValidConsumer(bytes32[] calldata _merkleProof) public view returns (bool) {
@@ -33,7 +33,7 @@ abstract contract Consumable {
         return userConsumptions[msg.sender] < totalUsesPerConsumer;
     }
 
-    function _incrementConsumerUses() internal {
+    function _incrementConsumerComsumptions() internal {
         userConsumptions[msg.sender]++;
     }
 }
